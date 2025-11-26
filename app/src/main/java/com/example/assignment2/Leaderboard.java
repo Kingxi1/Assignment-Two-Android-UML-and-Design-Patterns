@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Leaderboard {
 
@@ -18,20 +19,24 @@ public class Leaderboard {
         return instance;
     }
 
-    public void updateLeaderboard(Player player) {
-        players.add(player);
+    public void updateLeaderboard(Player newPlayer) {
+        players.add(newPlayer);
 
-        // 最高分排前面
-        Collections.sort(players, (p1, p2) ->
-                Integer.compare(p2.getScore(), p1.getScore()));
+        // Sorting: Scores from highest to lowest
+        Collections.sort(players, new Comparator<Player>() {
+            @Override
+            public int compare(Player p1, Player p2) {
+                return p2.getScore() - p1.getScore();
+            }
+        });
 
-        // 排行榜最多 5 个
+        //Keep it as it is
         if (players.size() > 5) {
-            players.remove(players.size() - 1);
+            players = new ArrayList<>(players.subList(0, 5));
         }
     }
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+    public ArrayList<Player> getTopFive() {
+        return players; // It has been confirmed that a maximum of 5 people will attend.
     }
 }

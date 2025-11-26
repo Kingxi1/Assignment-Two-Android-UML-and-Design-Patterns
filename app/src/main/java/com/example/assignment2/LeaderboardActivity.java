@@ -1,24 +1,61 @@
 package com.example.assignment2;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class LeaderboardActivity extends AppCompatActivity {
+
+    private ImageView[] avatarViews;
+    private TextView[] nameViews;
+    private TextView[] scoreViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        // Use the ranking layout that we have designed ourselves
         setContentView(R.layout.activity_leaderboard);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        //Bind 5 rows of view controls (the ID should be consistent with activity_leaderboard.xml)
+        avatarViews = new ImageView[]{
+                findViewById(R.id.iv_leaderboard_avatar1),
+                findViewById(R.id.iv_leaderboard_avatar2),
+                findViewById(R.id.iv_leaderboard_avatar3),
+                findViewById(R.id.iv_leaderboard_avatar4),
+                findViewById(R.id.iv_leaderboard_avatar5)
+        };
+
+        nameViews = new TextView[]{
+                findViewById(R.id.tv_leaderboard_name1),
+                findViewById(R.id.tv_leaderboard_name2),
+                findViewById(R.id.tv_leaderboard_name3),
+                findViewById(R.id.tv_leaderboard_name4),
+                findViewById(R.id.tv_leaderboard_name5)
+        };
+
+        scoreViews = new TextView[]{
+                findViewById(R.id.tv_leaderboard_score1),
+                findViewById(R.id.tv_leaderboard_score2),
+                findViewById(R.id.tv_leaderboard_score3),
+                findViewById(R.id.tv_leaderboard_score4),
+                findViewById(R.id.tv_leaderboard_score5)
+        };
+
+        //  2. Retrieve the top 5 from the Leaderboard singleton
+        ArrayList<Player> topPlayers = Leaderboard.getInstance().getTopFive();
+
+
+        for (int i = 0; i < topPlayers.size() && i < avatarViews.length; i++) {
+            Player p = topPlayers.get(i);
+
+            avatarViews[i].setImageResource(p.getAvatarResId());
+            nameViews[i].setText(p.getName() + " scored:");
+            scoreViews[i].setText(String.valueOf(p.getScore()));
+            // 不再改 visibility，让它一直可见即可
+        }
     }
 }
