@@ -1,10 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerActivity">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--  WHACK-A-MOLE Banner -->
+    <ImageView
+        android:id="@+id/iv_wakamole_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/img_wakamole_text"
+        android:scaleType="centerInside" />
+
+    <!-- Score: X -->
+    <TextView
+        android:id="@+id/tv_playerscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Score: 0"
+        android:textColor="#6A4CBC"
+        android:textSize="20sp"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <!-- ！ Enter your name -->
+        <EditText
+            android:id="@+id/et_playername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter name"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="24dp" />
+
+        <!-- <! Avatar Colour Label (Purple) -->
+        <TextView
+            android:id="@+id/tv_avatar_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Avatar Colour"
+            android:textColor="#6A4CBC"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Color selection group -->
+        <RadioGroup
+            android:id="@+id/rg_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Grey"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <RadioButton
+                android:id="@+id/rb_blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Blue"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <RadioButton
+                android:id="@+id/rb_orange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Orange"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <RadioButton
+                android:id="@+id/rb_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Green"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <RadioButton
+                android:id="@+id/rb_purple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Purple"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <RadioButton
+                android:id="@+id/rb_pink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pink"
+                android:textAppearance="?android:textAppearanceLarge" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <!-- Bottom Submit button (centered using ConstraintLayout + rounded purple) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#6750A4"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:onClick="onClickSubmit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
