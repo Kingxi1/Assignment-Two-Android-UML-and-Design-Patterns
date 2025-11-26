@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
+import android.content.Intent;
 
 public class GameLogic {
     private final Context context;
@@ -27,9 +28,10 @@ public class GameLogic {
 
     private boolean isGameRunning = false;
 
-    // 图片资源
+    // IMG Resource
     private final int imgWithMole = R.drawable.img_with_mole;
     private final int imgWithoutMole = R.drawable.img_without_mole;
+
 
     public GameLogic(Context context,
                      ArrayList<ImageView> moleViews,
@@ -41,7 +43,7 @@ public class GameLogic {
         this.tvScore = scoreText;
         this.tvTimer = timerText;
 
-        // 创建 9 个 Mole
+        //Create Mole
         moleList = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             moleList.add(new Mole());
@@ -62,10 +64,31 @@ public class GameLogic {
     //                 Game over
     public void stopGame() {
         isGameRunning = false;
-        handler.removeCallbacks(moleRunnable);
-        handler.removeCallbacks(timerRunnable);
+        if (moleRunnable != null) {
+            handler.removeCallbacks(moleRunnable);
+        }
+        if (timerRunnable != null) {
+            handler.removeCallbacks(timerRunnable);
+        }
     }
+    private void endGame() {
+        isGameRunning = false;
 
+        // Stop all loops
+        if (moleRunnable != null) {
+            handler.removeCallbacks(moleRunnable);
+        }
+        if (timerRunnable != null) {
+            handler.removeCallbacks(timerRunnable);
+        }
+
+        tvTimer.setText("Time: 0");
+
+        //Jump to the PlayerActivity and pass the final score
+        Intent intent = new Intent(context, PlayerActivity.class);
+        intent.putExtra("FINAL_SCORE", score);
+        context.startActivity(intent);
+    }
     //                 Timer logic
     private void startTimer() {
         timerRunnable = new Runnable() {
@@ -78,8 +101,7 @@ public class GameLogic {
                     updateTimer();
                     handler.postDelayed(this, 1000);
                 } else {
-                    stopGame();
-                    tvTimer.setText("Time: 0");
+                    endGame();
                 }
             }
         };
