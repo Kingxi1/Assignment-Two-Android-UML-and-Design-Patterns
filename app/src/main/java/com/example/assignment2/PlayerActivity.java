@@ -37,21 +37,21 @@ public class PlayerActivity extends AppCompatActivity {
     // XML: android:onClick="onClickSubmit"
     public void onClickSubmit(View view) {
 
-        // 1. 读取姓名
+        // Read the name
         String name = etPlayerName.getText().toString().trim();
         if (name.isEmpty()) {
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 2. 读取用户选择的头像
+        // 2. Read the selected avatar by the user
         int checkedId = rgAvatar.getCheckedRadioButtonId();
         if (checkedId == -1) {
             Toast.makeText(this, "Please choose an avatar colour", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 3. 根据选中的 RadioButton 得到头像资源
+        // 3. Obtain the avatar resource based on the selected RadioButton
         int avatarResId;
 
         if (checkedId == R.id.rb_blue) {
@@ -64,17 +64,17 @@ public class PlayerActivity extends AppCompatActivity {
             avatarResId = R.drawable.img_purple_mole;
         } else if (checkedId == R.id.rb_pink) {
             avatarResId = R.drawable.img_pink_mole;
-        } else {  // rb_grey 或默认
+        } else {
             avatarResId = R.drawable.img_grey_mole;
         }
 
-        // 4. 创建 Player（必须确保你已经创建 Player.java）
+        // 4. Create Player
         Player player = new Player(name, avatarResId, finalScore);
 
-        // 5. 更新排行榜（前提：你已创建 Leaderboard.java）
+        //5. Update the leaderboard
         Leaderboard.getInstance().updateLeaderboard(player);
 
-        // 6. 跳转排行榜页面
+        //6. Jump to the ranking page
         Intent intent = new Intent(PlayerActivity.this, LeaderboardActivity.class);
         startActivity(intent);
 

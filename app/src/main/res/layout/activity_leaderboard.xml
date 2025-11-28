@@ -6,206 +6,196 @@
     android:background="@android:color/white"
     android:padding="16dp">
 
-  <!-- Top banner -->
+  <!-- 顶部 WHACK-A-MOLE banner -->
   <ImageView
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1"
+      android:layout_weight="2"
       android:scaleType="centerInside"
       android:src="@drawable/img_wakamole_text" />
 
-  <!-- Leaderboard title -->
+  <!-- Leaderboard 标题 -->
   <TextView
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
       android:text="Leaderboard"
       android:textSize="22sp"
       android:textStyle="bold"
       android:textColor="#9C27B0"
       android:gravity="center" />
 
-  <!-- Content container -->
+  <!-- 列表区域 -->
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="9"
+      android:layout_weight="8"
       android:orientation="vertical"
-      android:layout_marginTop="20dp">
+      android:layout_marginTop="24dp">
 
-    <!-- row 1 -->
+    <!-- ===== row 1 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
 
       <ImageView
           android:id="@+id/iv_leaderboard_avatar1"
-          android:layout_width="0dp"
-          android:layout_height="50dp"
-          android:layout_weight="1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
           android:src="@drawable/img_grey_mole"
-          android:scaleType="centerCrop" />
+          android:scaleType="centerCrop"
+          android:layout_marginEnd="12dp" />
 
       <TextView
           android:id="@+id/tv_leaderboard_name1"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="3"
+          android:layout_weight="1"
           android:text="Name scored:"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:padding="4dp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/tv_leaderboard_score1"
-          android:layout_width="0dp"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="2"
           android:text="0"
           android:textAppearance="?android:attr/textAppearanceMedium"
-          android:gravity="end"
-          android:padding="4dp" />
+          android:gravity="end" />
     </LinearLayout>
 
-    <!-- row 2 -->
+    <!-- ===== row 2 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
 
       <ImageView
           android:id="@+id/iv_leaderboard_avatar2"
-          android:layout_width="0dp"
-          android:layout_height="50dp"
-          android:layout_weight="1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
           android:src="@drawable/img_grey_mole"
-          android:scaleType="centerCrop" />
+          android:scaleType="centerCrop"
+          android:layout_marginEnd="12dp" />
 
       <TextView
           android:id="@+id/tv_leaderboard_name2"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="3"
+          android:layout_weight="1"
           android:text="Name scored:"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:padding="4dp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/tv_leaderboard_score2"
-          android:layout_width="0dp"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="2"
           android:text="0"
           android:textAppearance="?android:attr/textAppearanceMedium"
-          android:gravity="end"
-          android:padding="4dp" />
+          android:gravity="end" />
     </LinearLayout>
 
-    <!-- row 3 -->
+    <!-- ===== row 3 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
 
       <ImageView
           android:id="@+id/iv_leaderboard_avatar3"
-          android:layout_width="0dp"
-          android:layout_height="50dp"
-          android:layout_weight="1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
           android:src="@drawable/img_grey_mole"
-          android:scaleType="centerCrop" />
+          android:scaleType="centerCrop"
+          android:layout_marginEnd="12dp" />
 
       <TextView
           android:id="@+id/tv_leaderboard_name3"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="3"
+          android:layout_weight="1"
           android:text="Name scored:"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:padding="4dp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/tv_leaderboard_score3"
-          android:layout_width="0dp"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="2"
           android:text="0"
           android:textAppearance="?android:attr/textAppearanceMedium"
-          android:gravity="end"
-          android:padding="4dp" />
+          android:gravity="end" />
     </LinearLayout>
 
-    <!-- row 4 -->
+    <!-- ===== row 4 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
 
       <ImageView
           android:id="@+id/iv_leaderboard_avatar4"
-          android:layout_width="0dp"
-          android:layout_height="50dp"
-          android:layout_weight="1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
           android:src="@drawable/img_grey_mole"
-          android:scaleType="centerCrop" />
+          android:scaleType="centerCrop"
+          android:layout_marginEnd="12dp" />
 
       <TextView
           android:id="@+id/tv_leaderboard_name4"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="3"
+          android:layout_weight="1"
           android:text="Name scored:"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:padding="4dp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/tv_leaderboard_score4"
-          android:layout_width="0dp"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="2"
           android:text="0"
           android:textAppearance="?android:attr/textAppearanceMedium"
-          android:gravity="end"
-          android:padding="4dp" />
+          android:gravity="end" />
     </LinearLayout>
 
-    <!-- row 5 -->
+    <!-- ===== row 5 ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
 
       <ImageView
           android:id="@+id/iv_leaderboard_avatar5"
-          android:layout_width="0dp"
-          android:layout_height="50dp"
-          android:layout_weight="1"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
           android:src="@drawable/img_grey_mole"
-          android:scaleType="centerCrop" />
+          android:scaleType="centerCrop"
+          android:layout_marginEnd="12dp" />
 
       <TextView
           android:id="@+id/tv_leaderboard_name5"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_weight="3"
+          android:layout_weight="1"
           android:text="Name scored:"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:padding="4dp" />
+          android:textAppearance="?android:attr/textAppearanceMedium" />
 
       <TextView
           android:id="@+id/tv_leaderboard_score5"
-          android:layout_width="0dp"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_weight="2"
           android:text="0"
           android:textAppearance="?android:attr/textAppearanceMedium"
-          android:gravity="end"
-          android:padding="4dp" />
+          android:gravity="end" />
     </LinearLayout>
 
   </LinearLayout>
