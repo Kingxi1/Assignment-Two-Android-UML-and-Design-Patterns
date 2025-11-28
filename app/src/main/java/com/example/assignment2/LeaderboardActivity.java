@@ -46,7 +46,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         };
 
         //  2. Retrieve the top 5 from the Leaderboard singleton
-        ArrayList<Player> topPlayers = Leaderboard.getInstance().getTopFive();
+        ArrayList<Player> topPlayers = Leaderboard.getInstance().getLeaderboard();
 
 
         for (int i = 0; i < topPlayers.size() && i < avatarViews.length; i++) {
@@ -55,7 +55,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             avatarViews[i].setImageResource(p.getAvatarResId());
             nameViews[i].setText(p.getName() + " scored:");
             scoreViews[i].setText(String.valueOf(p.getScore()));
-            // 不再改 visibility，让它一直可见即可
         }
     }
 }

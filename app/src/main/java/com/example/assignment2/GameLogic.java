@@ -14,21 +14,21 @@ import android.content.Intent;
 
 public class GameLogic {
 
-    // ===== UML 常量字段 =====
-    private static final long MOLE_DISPLAY_TIME = 600L;    // 每只地鼠出现时间（毫秒）
-    private static final long GAME_DURATION = 30_000L;     // 游戏总时长 30 秒
+    // UML constant field usage
+    private static final long MOLE_DISPLAY_TIME = 600L;    // The appearance time of each ground squirrel (in milliseconds)
+    private static final long GAME_DURATION = 30_000L;     //Total game duration 30 seconds
 
-    // ===== 游戏状态字段（UML: currentScore, timeRemaining 等）=====
+    // UML: currentScore, timeRemaining
     private int currentScore = 0;
-    private int timeRemaining = 30;    // 以秒为单位
+    private int timeRemaining = 30;
     private int currentMoleIndex = -1;
 
-    // ===== UI 相关 =====
+    //  UI
     private final Context context;
     private final TextView scoreTextView;
     private final TextView timerTextView;
 
-    // ===== 地鼠列表（UML: moles : ArrayList<Mole>）=====
+    // Mole list (UML: moles : ArrayList<Mole>)
     private final ArrayList<Mole> moles = new ArrayList<>();
 
     // ===== 随机 & Handler（UML: random, moleHandler）=====
@@ -36,13 +36,13 @@ public class GameLogic {
     private final Handler moleHandler = new Handler(Looper.getMainLooper());
     private Runnable moleRunnable;
 
-    // ===== 计时器（UML: gameTimer : CountDownTimer）=====
+    // Timer (UML: gameTimer : CountDownTimer)
     private CountDownTimer gameTimer;
 
-    // ===== 其他 =====
+    // Others
     private boolean isGameRunning = false;
 
-    // 图片资源（可以保持不变）
+    // // Image resources
     private final int imgWithMole = R.drawable.img_with_mole;
     private final int imgWithoutMole = R.drawable.img_without_mole;
 
@@ -57,7 +57,7 @@ public class GameLogic {
         this.scoreTextView = scoreText;
         this.timerTextView = timerText;
 
-        // 按 UML：为每个洞创建一个 Mole(index, imageView)
+        //According to UML: Create an Mole object (index, imageView) for each hole.
         for (int i = 0; i < moleViews.size(); i++) {
             ImageView view = moleViews.get(i);
             moles.add(new Mole(i, view));
@@ -90,7 +90,7 @@ public class GameLogic {
         }
     }
 
-    // 玩家点击某个洞
+    //The player clicks on a certain hole
     public void onMoleClicked(int index) {
         if (!isGameRunning) return;
         if (index < 0 || index >= moles.size()) return;
@@ -99,7 +99,7 @@ public class GameLogic {
         if (mole.isVisible()) {
             currentScore++;
             updateScoreText();
-            // 被打中的地鼠立即消失
+            //The hit ground squirrel immediately vanished.
             hideMole(index);
         }
     }
@@ -138,11 +138,11 @@ public class GameLogic {
 
                 hideAllMoles();
 
-                // 随机选一个坑显示地鼠
+                //Randomly select a hole to reveal the groundhog
                 currentMoleIndex = random.nextInt(moles.size());
                 showMole(currentMoleIndex);
 
-                // 按设定时间重复
+                // Repeat at the set time
                 moleHandler.postDelayed(this, MOLE_DISPLAY_TIME);
             }
         };
@@ -150,13 +150,13 @@ public class GameLogic {
         moleHandler.post(moleRunnable);
     }
 
-    // 显示指定 index 的地鼠（UML: showMole(index)）
+    // Display the mole with the specified index (UML: showMole(index))
     private void showMole(int index) {
         Mole mole = moles.get(index);
         mole.setVisible(true);
         mole.getImageView().setImageResource(imgWithMole);
     }
-    // 隐藏指定 index 的地鼠
+    // Hide the mole at the specified index
     private void hideMole(int index) {
         Mole mole = moles.get(index);
         mole.setVisible(false);
@@ -169,15 +169,14 @@ public class GameLogic {
             mole.getImageView().setImageResource(imgWithoutMole);
         }
     }
-    // ================== 分数逻辑 ==================
+    // Score logic
 
     private void updateScoreText() {
         scoreTextView.setText("Score: " + currentScore);
     }
 
-    // ================== 结束游戏 ==================
-
-    private void endGame() {
+    // Pause the mole cycle and timer (corresponding to UML: stopMoleLoop())
+    public void stopMoleLoop() {
         isGameRunning = false;
 
         if (moleRunnable != null) {
@@ -186,15 +185,21 @@ public class GameLogic {
         if (gameTimer != null) {
             gameTimer.cancel();
         }
+    }
+    // First, stop the loop, then jump to PlayerActivity
+    private void endGame() {
+        // First, call the function "stopMoleLoop()" to ensure that all have stopped.
+        stopMoleLoop();
 
-        // 跳转到 PlayerActivity，并传递最终分数
+        // Jump to the PlayerActivity and pass the final score
         Intent intent = new Intent(context, PlayerActivity.class);
         intent.putExtra("FINAL_SCORE", currentScore);
         context.startActivity(intent);
 
-        // 可选：结束当前 GameActivity（防止 Back 回到游戏中间状态）
+        // Close GameActivity
         if (context instanceof Activity) {
             ((Activity) context).finish();
         }
     }
+
 }

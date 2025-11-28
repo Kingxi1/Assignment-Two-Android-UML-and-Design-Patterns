@@ -20,11 +20,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // 1. 绑定计时和分数文本
+        // Bind the timing and score text together
         TextView tvTimer = findViewById(R.id.tv_timer_text);
         TextView tvScore = findViewById(R.id.tv_score_text);
 
-        // 2. 收集 9 个洞的 ImageView
+        // 2. Collect the ImageView of 9 holes
         ArrayList<ImageView> moleViews = new ArrayList<>();
         moleViews.add(findViewById(R.id.iv_without_mole_01));
         moleViews.add(findViewById(R.id.iv_without_mole_02));
@@ -39,9 +39,9 @@ public class GameActivity extends AppCompatActivity {
         // 3. Create GameLogic
         gameLogic = new GameLogic(
                 this,       // Context
-                moleViews,  // 9 个洞
-                tvScore,    // 分数 TextView
-                tvTimer     // 计时 TextView
+                moleViews,  // Nine holes
+                tvScore,    //  Score TextView
+                tvTimer     //Timer TextView
         );
 
         // 4. Start Game
@@ -59,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (gameLogic != null) {
-            gameLogic.stopGame();
+            gameLogic.stopMoleLoop();
         }
     }
 }
